@@ -34,7 +34,7 @@ PUBlisher, by creating two threads, one to recv from PUSH socket, saving into a 
 and other providing the information into bus.
 
 ### Disclaimer
-This is a **quick and dirty hack** created to solve a problem, it opens and closes TCP connections for every message, require data as string and doesn't check for errors(actually, it doesn't check for anything, not even the expected **ff00 0000 0000 0000 017f** return value), it is, basically, a nodeMCU version of a **bash** command: `python -c 'import sys; from struct import pack; p = lambda : "%s%s" % (pack("BBBB", 1, 0, len(MSG)+1, 0) , MSG); sys.stdout.write(p("sensor1,15.43"))' | nc localhost 5555 | xxd` So, although it is usable and works, take care and change it to fulfil your needs(and a pull request is always welcome).
+This is a **quick and dirty hack** created to solve a problem, it opens and closes TCP connections for every message, require data as string and doesn't check for errors(actually, it doesn't check for anything, not even the expected **ff00 0000 0000 0000 017f** return value), it is, basically, a nodeMCU version of a **bash** command: `python -c 'import sys; from struct import pack; p = lambda MSG: "%s%s" % (pack("BBBB", 1, 0, len(MSG)+1, 0) , MSG); sys.stdout.write(p("sensor1,15.43"))' | nc localhost 5555 | xxd` So, although it is usable and works, take care and change it to fulfil your needs(and a pull request is always welcome).
 
 ## License
 [MIT License](LICENSE.md) © 2015-2016 Paolo Oliveira.
